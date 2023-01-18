@@ -3,6 +3,7 @@ package com.example.w23comp1008lhw2;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class Card {
     private String suit;
     private String faceName;
@@ -16,7 +17,7 @@ public class Card {
      */
     public Card(String suit, String faceName) {
         setSuit(suit);
-        this.faceName = faceName;
+        setFaceName(faceName);
     }
 
     public String getSuit() {
@@ -28,6 +29,12 @@ public class Card {
      * @param suit "hearts","clubs","spades","diamonds"
      */
     public void setSuit(String suit) {
+        suit = suit.toLowerCase();
+
+        //check for s in the final position of the string, if not add one
+        if (suit.charAt(suit.length()-1) != 's')
+            suit = suit+"s";
+
         List<String> validSuits = Arrays.asList("hearts","clubs","spades","diamonds");
 
         //test if the argument is in the list of valid suits
@@ -42,8 +49,20 @@ public class Card {
         return faceName;
     }
 
+    /**
+     * validates the argument and sets the instance variable
+     * @param faceName "2","3","4",..."jack","queen","king","ace"
+     */
     public void setFaceName(String faceName) {
-        this.faceName = faceName;
+        List<String> validFaceNames = Arrays.asList("2","3","4",
+                            "5","6","7","8","9","10","jack","queen","king","ace");
+        faceName = faceName.toLowerCase();
+
+        if (validFaceNames.contains(faceName))
+            this.faceName = faceName;
+        else
+            throw new IllegalArgumentException(faceName + " must be from the list "
+                                            + validFaceNames);
     }
 
     @Override
