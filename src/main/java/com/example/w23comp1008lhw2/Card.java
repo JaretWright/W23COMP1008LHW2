@@ -49,13 +49,18 @@ public class Card {
         return faceName;
     }
 
+    public List<String> getFaceNames()
+    {
+        return Arrays.asList("2","3","4",
+                "5","6","7","8","9","10","jack","queen","king","ace");
+    }
+
     /**
      * validates the argument and sets the instance variable
      * @param faceName "2","3","4",..."jack","queen","king","ace"
      */
     public void setFaceName(String faceName) {
-        List<String> validFaceNames = Arrays.asList("2","3","4",
-                            "5","6","7","8","9","10","jack","queen","king","ace");
+        List<String> validFaceNames = getFaceNames();
         faceName = faceName.toLowerCase();
 
         if (validFaceNames.contains(faceName))
@@ -69,5 +74,30 @@ public class Card {
     public String toString()
     {
         return faceName + " of " + suit;
+    }
+
+    /**
+     * This method returns the colour of the suit.  Red = hearts or diamonds
+     * Black = clubs or spades
+     */
+    public String getColour()
+    {
+        if (suit.equals("hearts") || suit.equals("diamonds"))
+            return "red";
+        else
+            return "black";
+    }
+
+    /**
+     * This returns the value of the card
+     * index    ->  0 , 1 , 2,  3 , 4 , 5 , 6,  7,  8,    9,    10,      11,   12
+     * faceName -> "2","3","4","5","6","7","8","9","10","jack","queen","king","ace"
+     * value    ->  2 , 3,  4,  5,  6,  7,  8, 9,  10,   11,    12,     13,    14
+     */
+    public int getCardValue()
+    {
+        List<String> faceNames = getFaceNames();
+        int indexPosition = faceNames.indexOf(faceName);
+        return indexPosition+2;
     }
 }
