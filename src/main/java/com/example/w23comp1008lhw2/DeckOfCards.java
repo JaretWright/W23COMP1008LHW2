@@ -16,8 +16,27 @@ public class DeckOfCards {
     public DeckOfCards()
     {
         deck = new ArrayList<>();
+        //"hearts","clubs","spades","diamonds"
+        //   0         1       2        3
         List<String> suits = Card.getValidSuits();
         List<String> faceNames = Card.getFaceNames();
 
+        for (int i=0 ; i< suits.size(); i++)
+        {
+            for (int x=0; x <faceNames.size() ; x++){
+                deck.add(new Card(suits.get(i),faceNames.get(x)));
+            }
+        }
+    }
+
+    /**
+     * This method returns the top Card from the deck or null if the
+     * deck is empty
+     */
+    public Card dealTopCard()
+    {
+        if (deck.size()>0)
+            return deck.remove(0);
+        return null;
     }
 }
