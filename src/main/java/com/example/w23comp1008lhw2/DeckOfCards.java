@@ -1,6 +1,7 @@
 package com.example.w23comp1008lhw2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DeckOfCards {
@@ -46,5 +47,13 @@ public class DeckOfCards {
     public int getNumOfCards()
     {
         return deck.size();
+    }
+
+    /**
+     * This method will shuffle the deck (randomize the Card order)
+     */
+    public void shuffle()
+    {
+        Collections.shuffle(deck);
     }
 }
